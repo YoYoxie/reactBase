@@ -22,6 +22,7 @@ class Sidebar extends React.Component {
         console.log(mode);
         mode = mode == "inline"?'vertical':'inline',
         this.props.sidebarmode(mode);
+        this.props.sidebaropen([]);
     }
     //设置展开
     setOpen(openkey){

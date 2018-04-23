@@ -11,13 +11,17 @@ moment.tz.setDefault('Asia/Shanghai');
 import styles from '../components/Layout.less';
 import { getCookie } from '../components/utils';
 import Login from '../components/Login';
+import Layout from '../components/Layout';
+
+// 车型库
+import ModelLibrary from '../components/modellibrary/Modellibrary';
 
 const validate = function(next, replace, callback) {
     // const isLoggedIn = !!getCookie('authorization')
     // if (!isLoggedIn && next.location.pathname != '/login') {
     //     replace('/login')
     // }
-    // callback()
+    callback()
 }
 
 const Home = props => (
@@ -27,32 +31,28 @@ const Home = props => (
                 <Breadcrumb {...props} />
             </div>
             <div className={styles.layoutcontent}>
-                {props.children || Department}
+                {props.children || ModelLibrary}
             </div>
         </div>
     </Layout>
 )
-// const Organizations = ({ location }) => {
-//     let Child;
-//     switch (location.pathname) {
-//         case '/organization/department': Child = <Department />; break;
-//         case '/organization/person': Child = <Person />; break;
-//         case '/organization/account': Child = <Account />; break;
-//         case '/organization/role': Child = <Role />; break;
-//         case '/organization/authorities': Child = <Authorities />; break;
-//         case '/organization/agentaccount': Child = <Agentaccount />; break;
-//         case '/organization/mapping': Child = <Mapping />; break;
-//         default:      Child = <Department />;
-//     }
-//     return ( <div>{Child}</div>);
-// };
+const VehModelLibrary = ({ location }) => {
+    let Child;
+    switch (location.pathname) {
+        case '/vehmodlibrary/modlibrary': Child = <ModelLibrary />; break;
+        default:      Child = <ModelLibrary />;
+    }
+    return ( <div>{Child}</div>);
+};
 
 
 const Routes = ({ history }) =>
     <Router history={hashHistory}>
         <Route  path="/" component={Home} onEnter = { validate }>
-            {/*<IndexRedirect to = "train/test" />*/}
-            
+            <IndexRedirect to = "vehmodlibrary/modlibrary" />
+            <Route name="vehmodlibrary" breadcrumbName="车型专业库管理" path="vehmodlibrary" component={VehModelLibrary}>
+                <Route breadcrumbName="车型专业库" path="modlibrary"/>
+            </Route>
         </Route>
         <Route path = "/login" component = { Login }/>
     </Router>;

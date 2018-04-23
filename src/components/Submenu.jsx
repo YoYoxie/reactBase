@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import cookie from 'js-cookie';
 import { Form, Input, Button, Row, Col, Modal, Menu, Icon, notification } from 'antd';
 import { forgetpassword, resetpassword, setstatus, setcode, logoutpost } from '../action/login';
-import { accountgetinfo } from '../action/organization/Account';
+// import { accountgetinfo } from '../action/organization/Account';
 
 const SubMenu = Menu.SubMenu;
 const FormItem = Form.Item;
@@ -16,7 +16,7 @@ class Submenu extends React.Component {
         super(props)
     }
     componentWillMount(){
-        this.props.accountgetinfo(cookie.get('userId'));
+        // this.props.accountgetinfo(cookie.get('userId'));
     }
     //获取Code
     getCode(){
@@ -93,10 +93,10 @@ class Submenu extends React.Component {
     render () {
         const { getFieldDecorator } = this.props.form;
         const { status, code } = this.props.login;
-        const { mydata } = this.props.orgAccount;
+        const { mydata } = {person:null};
         return(
             <Menu className={styles.headermenu} mode="horizontal" onClick={this.onSubmenu.bind(this)}>
-                <SubMenu title={<span style={{color:'#F18F68'}}><Icon type="user" />{mydata.person?mydata.person.name:''}</span>}>
+                <SubMenu title={<span style={{color:'#F18F68'}}><Icon type="user" />{}</span>}>
                     <Menu.Item key="forget">修改密码</Menu.Item>
                     <Menu.Item key="logout">退出</Menu.Item>
                 </SubMenu>
@@ -156,7 +156,7 @@ function mapDispatchToProps(dispatch) {
         setstatus: bindActionCreators(setstatus, dispatch),
         setcode: bindActionCreators(setcode, dispatch),
         logoutpost: bindActionCreators(logoutpost, dispatch),
-        accountgetinfo: bindActionCreators(accountgetinfo, dispatch),
+        // accountgetinfo: bindActionCreators(accountgetinfo, dispatch),
     }
 }
 
