@@ -1,6 +1,7 @@
 dist
 node_modules
 cypress
+cypress.json
 .DS_Store
 
 npm-debug.log

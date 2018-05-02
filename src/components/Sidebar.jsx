@@ -54,9 +54,9 @@ class Sidebar extends React.Component {
 
         return (
             <div className={mode == "inline"?styles.layoutsider:styles.layoutsiderview}>
-                <div className={styles.layoutlogo}><a onClick={this.setMode.bind(this, mode)}><Icon type="bars" /></a><span>BSS <b>V 1.6.2</b></span></div>
+                <div className={styles.layoutlogo}><a onClick={this.setMode.bind(this, mode)}><Icon type="bars" style={{color:'#FFF'}} /></a><span>BSS <b>V 1.6.2</b></span></div>
                 <div className={styles.layoutmenu}>
-                    <Menu mode={mode} openKeys={open} onOpenChange={this.setOpen.bind(this)}>
+                    <Menu id="menu" mode={mode} openKeys={open} onOpenChange={this.setOpen.bind(this)}>
                         {menuView}
                     </Menu>
                 </div>

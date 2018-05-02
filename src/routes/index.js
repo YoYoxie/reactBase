@@ -15,6 +15,10 @@ import Layout from '../components/Layout';
 
 // 车型库
 import ModelLibrary from '../components/modellibrary/Modellibrary';
+// 车型配置库
+import Configure from '../components/configure/Configure';
+// 车型版本库
+import Version from '../components/version/Version';
 
 const validate = function(next, replace, callback) {
     // const isLoggedIn = !!getCookie('authorization')
@@ -44,6 +48,22 @@ const VehModelLibrary = ({ location }) => {
     }
     return ( <div>{Child}</div>);
 };
+const ConfigLibrary = ({ location }) => {
+    let Child;
+    switch (location.pathname) {
+        case '/configlibrary/configure': Child = <Configure />; break;
+        default:      Child = <Configure />;
+    }
+    return ( <div>{Child}</div>);
+};
+const VersionMenu = ({ location }) => {
+    let Child;
+    switch (location.pathname) {
+        case '/version/list': Child = <Version />; break;
+        default:      Child = <Version />;
+    }
+    return ( <div>{Child}</div>);
+};
 
 
 const Routes = ({ history }) =>
@@ -52,6 +72,12 @@ const Routes = ({ history }) =>
             <IndexRedirect to = "vehmodlibrary/modlibrary" />
             <Route name="vehmodlibrary" breadcrumbName="车型专业库管理" path="vehmodlibrary" component={VehModelLibrary}>
                 <Route breadcrumbName="车型专业库" path="modlibrary"/>
+            </Route>
+            <Route name="configlibrary" breadcrumbName="车型库配置管理" path="configlibrary" component={ConfigLibrary}>
+                <Route breadcrumbName="车型库配置" path="configure"/>
+            </Route>
+            <Route name="version" breadcrumbName="车型库版本管理" path="version" component={VersionMenu}>
+                <Route breadcrumbName="车型库版本" path="list"/>
             </Route>
         </Route>
         <Route path = "/login" component = { Login }/>

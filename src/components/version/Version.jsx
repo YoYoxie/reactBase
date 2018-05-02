@@ -2,27 +2,41 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Spin, Table, Button, Row, Col, Form, Select, Input, Modal, Checkbox, Popconfirm} from 'antd';
-import { modlibraryget } from '../../action/modellibrary/Modellibrary';
+import { verversionget } from '../../action/version/Version';
+import moment from 'moment';
 import { getQueryString } from '../utils';
 import styles from '../style/card.less';
 
 const Option = Select.Option;
 const Search = Input.Search;
 
-class ModelLibrary extends React.Component {
+class Version extends React.Component {
     constructor (props) {
         super(props)
     }
 
     componentWillMount(){
-        let { info } = this.props.modLibrary;
-        this.props.modlibraryget(info);
+        let { info } = this.props.verVersion;
+        this.props.verversionget(info);
     }
     // 筛选
-    formFilter(key, value){
-        let { info } = this.props.modLibrary;
-        if(key == 'username'){
-            info.username = value;
+    formFilter(key, type, value, arg){
+        let { info } = this.props.verVersion;
+        if(key == 'versionNo'){
+            if(type=='enter'){
+                if(value.target.value){
+                    info.versionNo = value.target.value;
+                }else{
+                    delete info.versionNo;
+                }
+            }else{
+                if(value){
+                    info.versionNo = value;
+                }else{
+                    delete info.versionNo;
+                }
+            }
+                
         }
         if(key == 'enabled'){
             if(value){
@@ -40,18 +54,18 @@ class ModelLibrary extends React.Component {
         }
         info.page=0;
         info.size=10;
-        // this.props.accountget(info);
+        this.props.verversionget(info);
         // this.props.accountload(true);
     }
     //分页
     formPage(current, pageSize){
-        const { info } = this.props.modLibrary;
+        const { info } = this.props.verVersion;
         info.page = current - 1;
         if(pageSize != info.size){
             info.size = pageSize;
             info.page = 0;
         }
-        // this.props.accountget(info);
+        this.props.verversionget(info);
         // this.props.accountload(true);
     }
     //设置弹窗
@@ -77,7 +91,7 @@ class ModelLibrary extends React.Component {
         }
     }
     render() {
-        const { list, info, load } = this.props.modLibrary;
+        const { list, info, load } = this.props.verVersion;
         const pagination = {
             total: list.totalElements,
             current: info.page + 1,
@@ -91,19 +105,19 @@ class ModelLibrary extends React.Component {
             onChange: this.formPage.bind(this),
         };
         const columns = [
-            { title: 'LevelID',dataIndex: 'levelId', key: 'levelId',},
-            { title: '厂商', dataIndex: 'makerName', key: 'makerName',},
-            { title: '品牌', dataIndex: 'brandName', key: 'brandName',},
-            { title: '车系', dataIndex: 'seriesName', key: 'seriesName',},
-            { title: '车型', dataIndex: 'saleName', key: 'saleName',},
-            { title: '年款', dataIndex: 'genreationYear', key: 'genreationYear',},
-            { title: '状态', dataIndex: 'status', key: 'status',},
-            { title: '更新时间', dataIndex: 'time', key: 'e',
-                render: (text, record) => (<span>{record.isLocked?'是':'否'}</span>),
+            { title: '版本号',dataIndex: 'name', key: 'name',},
+            { title: '状态',dataIndex: 'version', key: 'status',
+                render: (text, record) => (<span>{record.status?'启用':'禁用'}</span>),
+            },
+            { title: '生成时间',dataIndex: 'creationTime', key: 'creationTime',
+                render: (text, record) => record.creationTime?moment(record.creationTime).format("YYYY-MM-DD"):'',
+            },
+            { title: '发布时间',dataIndex: 'modificationTime', key: 'modificationTime',
+                render: (text, record) => record.modificationTime?moment(record.modificationTime).format("YYYY-MM-DD"):'',
             },
             { title: '操作', key: 'operation',
                 render: (text, record) => (<span>
-                    <a onClick={this.setModal.bind(this, record.id)}>编辑</a>
+                    <a onClick={this.setModal.bind(this,)}>编辑</a>
                 </span>),
             },
         ];
@@ -124,7 +138,7 @@ class ModelLibrary extends React.Component {
                         </Select>
                     </Col>
                     <Col span={3} className={styles.pr8}>
-                        <Search defaultValue={getQueryString('username')} placeholder="手机号搜索" style={{width: '100%'}} disabled={load} onSearch={this.formFilter.bind(this, 'username')}/>
+                        <Search defaultValue={info.versionNo} placeholder="版本号搜索" enterButton style={{width: '100%'}} disabled={load} onPressEnter={this.formFilter.bind(this, 'versionNo','enter')} onSearch={this.formFilter.bind(this, 'versionNo','noenter')}/>
                     </Col>
                 </Row>
                 <Table rowKey="id" loading={load} columns={columns} dataSource={list.content} pagination={pagination} />
@@ -133,15 +147,15 @@ class ModelLibrary extends React.Component {
     }
 }
 
-function mapStateToProps({ modLibrary }) {
+function mapStateToProps({ verVersion }) {
     return {
-        modLibrary: modLibrary,
+        verVersion: verVersion,
     };
 }
 function mapDispatchToProps(dispatch) {
     return {
-        modlibraryget: bindActionCreators(modlibraryget,dispatch),
+        verversionget: bindActionCreators(verversionget,dispatch),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModelLibrary);
+export default connect(mapStateToProps, mapDispatchToProps)(Version);

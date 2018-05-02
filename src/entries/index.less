@@ -20,9 +20,10 @@
 
     //输入框
     .ant-input {
-        border-radius: 0;
         padding:0 7px;
-        border:1px solid #83919E;
+        background: #FFFFFF;
+        border: 1px solid rgba(0,0,0,0.15);
+        border-radius: 4px;
         color:#253648;
         &:hover,&:active,&:focus{
             border:1px solid #49BCCE;
@@ -41,7 +42,7 @@
     }
     //多选框
     .ant-select{
-        color:#34495E;
+        color:#4B74FF;
     }
     :root .ant-select-arrow{
         font-size:14px;
@@ -52,8 +53,9 @@
         -webkit-transform: scale(0.85) rotate(0deg);
     }
     .ant-select-selection {
-        border-radius: 0;
-        border: 1px solid #83919E;
+        background: #FFFFFF;
+        border: 1px solid rgba(0,0,0,0.15);
+        border-radius: 4px;
         &:hover,&:focus,&:active{
             border:1px solid #49BCCE;
         }
@@ -61,7 +63,7 @@
     .ant-select-tree{
         li{
             a{
-                color:#34495E;
+                color:#4B74FF;
             }
         }
     }
@@ -71,7 +73,7 @@
     .ant-checkbox-group+.ant-form-explain{display: block;}
     //select框文字颜色
     .ant-select-selection__placeholder, .ant-select-search__field__placeholder{
-        color:#34495E;
+        color:#BFBFBF;
     }
     //按钮
     .ant-btn {
@@ -108,11 +110,14 @@
     //蓝色色按钮
     .ant-btn-primary {
         color: #FFF;
-        background-color: #49BCCE;
+        background-color: #2DD1AC;
         border:0;
     }
+    .ant-input-search-button{
+        background-color: #2DD1AC;
+    }
     .ant-btn-primary:focus, .ant-btn-primary:hover{
-        background-color: #2691A1;
+        background-color: #49BCCE;
         border: 0;
     }
     //蓝色按钮
@@ -136,50 +141,55 @@
         padding-left: 10px;
         background: #FFF;
         a{
-            color:#34495e;
+            color:#16325C;
             &:hover{
-                color:#34495E;
+                color:#16325C;
             }
         }
         >span{
             &:last-child{
-                color: #000;
+                color: #16325C;
                 font-weight:normal;
             }
         }
     }
     //左侧导航栏
     .ant-menu-item > a{
-        color:#fff;
+        color:#061C3F;
         &:hover{
-            color: #49BCCE;
+            color: #4B74FF;
+        }
+    }
+    .ant-menu-item{
+        &:hover{
+            background-color: #EFF6FF;
         }
     }
     .ant-menu{
-        background: #34495E;
+        background: #FFF;
     }
     .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
         height: 60px;
         line-height: 60px;
-        border-bottom: 1px solid #253648;
+        // border-bottom: 1px solid #4B74FF;
         font-size:14px;
         margin: 0px;
     }
     .ant-menu-sub.ant-menu-inline > .ant-menu-item {
         height: 60px;
         line-height: 60px;
-        background: #253648;
-        border-bottom: 1px solid #34495E;
+        background: #FFF;
+        // border-bottom: 1px solid #4B74FF;
         font-size:13px;
         margin: 0px;
     }
     //选择住标签后显示蓝色标示
     .ant-menu-sub.ant-menu-inline > .ant-menu-item-selected {
-        background:#49bcce;
+        background:#EFF6FF;
 
     }
     .ant-menu-item-selected > a, .ant-menu-item-selected > a:hover {
-        color:#fff;
+        color:#4B74FF;
     }
     .ant-menu-inline{
         .ant-menu-item-selected{
@@ -234,48 +244,48 @@
         }
     }
     .ant-menu-submenu-active {
-        background: #34495E;
+        background: #F0F8FC;
     }
     .ant-menu-item-active,
     .ant-menu-submenu-active,
     .ant-menu-submenu-title{
         &:hover{
-            background-color: #34495E;
-            color:#fff;
+            background-color: #EFF6FF;
+            color:#4B74FF;
         }
     }
     .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title{
-        color:#fff;
+        color:#061C3F;
     }
     .ant-menu-inline, .ant-menu-vertical{
-        border-right:1px solid #34495E;
+        // border-right:1px solid #4B74FF;
     }
     .ant-menu-submenu-title .anticon{
-        color:#FFF;
+        color:#061C3F;
     }
     .ant-menu-submenu-open .ant-menu-submenu-title{
         &:hover{
-            background:#253648;
+            background:#FFF;
         }
     }
     .ant-menu-horizontal > .ant-menu-submenu-selected{
-        border-bottom:2px solid #49BCCE;
-        color: #49BCCE;
-        background: #253648;
+        // border-bottom:2px solid #49BCCE;
+        color: #4B74FF;
+        background: #EFF6FF;
     }
     .ant-menu-item-selected > a,
     .ant-menu-item-selected > a:hover {
-        color: #49BCCE;
+        color: #4B74FF;
     }
     .ant-menu-item-selected{
-        color:#fff;
+        color:#061C3F;
     }
     .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-        background-color: #253648;
+        background-color: #EFF6FF;
     }
     //左侧菜单选中后右侧蓝色竖线
     .ant-menu-inline .ant-menu-item:after, .ant-menu-vertical .ant-menu-item:after{
-        border-right: 3px solid #49BCCE;
+        border-right: 3px solid #4B74FF;
     }
     //正式环境左侧文字颜色
     //.ant-menu-submenu-title{
@@ -334,36 +344,35 @@
             th{
                 padding:9px 8px;
                 text-align:center;
-                background:#A1DBE4;
+                background:#FAFAFA;
                 font-weight:normal;
                 color:#000;
-                border-right:1px solid #ECECEC;
-                border-top:1px solid #ECECEC;
+                // border-right:1px solid #ECECEC;
+                // border-top:1px solid #ECECEC;
             }
         }
 
     }
     .ant-table-thead > tr > th{
-        border-top:0;
-        &:last-child{
-            border-right:0;
-        }
+        // border-top:0;
+        // &:last-child{
+        //     border-right:0;
+        // }
     }
     .ant-table-tbody > tr > td{
         font-size:12px;
         text-align:center;
-        border-right:1px solid #ECECEC;
         height:40px;
         padding:0 4px;
-        &:first-child{
-            border-left:1px solid #ECECEC;
-        }
-        &:last-child{
-            border-right:1px solid #ECECEC;
-        }
+        // &:first-child{
+        //     border-left:1px solid #ECECEC;
+        // }
+        // &:last-child{
+        //     border-right:1px solid #ECECEC;
+        // }
     }
     .ant-table-thead > tr > th.ant-table-column-sort{
-        background:#A1DBE4;
+        background:#FAFAFA;
     }
     //鼠标移到行上的hover颜色
     .ant-table-thead > tr.ant-table-row-hover,
@@ -391,7 +400,7 @@
         top:0;
     }
     .ant-table-small .ant-table-thead > tr > th{
-        background:#A1DBE4;
+        background:#FAFAFA;
         padding:8px;
         border-top:0;
     }
@@ -487,7 +496,7 @@
     }
     .ant-card-head-title{
         font-weight:normal;
-        color:#34495E;
+        color:#4B74FF;
 
     }
     //progress bar
@@ -563,20 +572,20 @@
     }
     //placehoder
     ::-webkit-input-placeholder {
-        color:#34495E;
+        color:#000000 25%;
         opacity: 1;
     }
     .ant-input::-webkit-input-placeholder {
-        color: #34495E;
+        color: #000000 25%;
     }
     .ant-input:-moz-placeholder {
-        color: #34495E;
+        color: #000000 25%;
     }
     .ant-input::-moz-placeholder {
-        color: #34495E;
+        color: #000000 25%;
     }
     .ant-input:-ms-input-placeholder {
-        color: #34495E;
+        color: #000000 25%;
     }
     .ant-select-selection-selected-value{
         color:#253648;
@@ -813,14 +822,14 @@
     }
     //7-20日期选择框中默认文字颜色统一成和INPUT输入框一致
     .ant-calendar-range-picker-input::-moz-placeholder {
-        color: #34495E;
+        color: #4B74FF;
         opacity: 1;
     }
     .ant-calendar-range-picker-input:-ms-input-placeholder {
-        color: #34495E;
+        color: #4B74FF;
     }
     .ant-calendar-range-picker-input::-webkit-input-placeholder {
-        color: #34495E;
+        color: #4B74FF;
     }
     //弹框标题文字
     .ant-modal-title{
@@ -878,7 +887,7 @@
     .ant-tabs-userDefineTab {
         .ant-tabs-bar{
             background:#F2FBFC;
-            border-bottom:1px solid #A1DBE4;
+            border-bottom:1px solid #FAFAFA;
             margin-bottom:20px;
 
         }

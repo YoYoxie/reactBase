@@ -16,31 +16,83 @@ function* sidebarGet(action) {
     //     if (jsonResult.ok) {
             yield put({
                 type: 'SIDEBAR/GET/SUCCESS',
-                list: [{
-            "categoryName":null,
-            "extParam":"/vehmodlibrary/modlibrary",
-            "iconUri":"appstore-o",
-            "iconUri2":null,
-            "id":81,
-            "menuName":"车型专业库管理",
-            "menus":[
+                list: [
                 {
                     "categoryName":null,
-                    "extParam":"/vehmodlibrary/modlibrary",
-                    "iconUri":null,
+                    "extParam":"/vehmodlibrary",
+                    "iconUri":"appstore-o",
                     "iconUri2":null,
-                    "id":125,
-                    "menuName":"车型专业库",
+                    "id":81,
+                    "menuName":"车型专业库管理",
                     "menus":[
+                        {
+                            "categoryName":null,
+                            "extParam":"/vehmodlibrary/modlibrary",
+                            "iconUri":null,
+                            "iconUri2":null,
+                            "id":125,
+                            "menuName":"车型专业库",
+                            "menus":[
 
+                            ],
+                            "parentMenu":"车型专业库管理",
+                            "parentMenuId":81
+                        }
                     ],
-                    "parentMenu":"车型专业库管理",
-                    "parentMenuId":81
+                    "parentMenu":"顶级节点",
+                    "parentMenuId":null
+                },
+                {
+                    "categoryName":null,
+                    "extParam":"/configlibrary",
+                    "iconUri":"appstore-o",
+                    "iconUri2":null,
+                    "id":82,
+                    "menuName":"车型库配置管理",
+                    "menus":[
+                        {
+                            "categoryName":null,
+                            "extParam":"/configlibrary/configure",
+                            "iconUri":null,
+                            "iconUri2":null,
+                            "id":126,
+                            "menuName":"车型库配置",
+                            "menus":[
+
+                            ],
+                            "parentMenu":"车型库配置管理",
+                            "parentMenuId":82
+                        }
+                    ],
+                    "parentMenu":"顶级节点",
+                    "parentMenuId":null
+                },
+                {
+                    "categoryName":null,
+                    "extParam":"/version",
+                    "iconUri":"appstore-o",
+                    "iconUri2":null,
+                    "id":83,
+                    "menuName":"车型库版本管理",
+                    "menus":[
+                        {
+                            "categoryName":null,
+                            "extParam":"/version/list",
+                            "iconUri":null,
+                            "iconUri2":null,
+                            "id":127,
+                            "menuName":"车型库版本",
+                            "menus":[
+
+                            ],
+                            "parentMenu":"车型库版本管理",
+                            "parentMenuId":83
+                        }
+                    ],
+                    "parentMenu":"顶级节点",
+                    "parentMenuId":null
                 }
-            ],
-            "parentMenu":"顶级节点",
-            "parentMenuId":null
-        }]
+                ]
             });
     //     }
     // } catch (error) {

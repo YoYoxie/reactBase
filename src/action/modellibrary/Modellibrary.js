@@ -1,5 +1,5 @@
 /*
-    组织架构-账号事件
+    车型库-事件
 */
 //获取数据列表
 export function modlibraryget(info) {

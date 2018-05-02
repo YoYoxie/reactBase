@@ -2,25 +2,32 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Spin, Table, Button, Row, Col, Form, Select, Input, Modal, Checkbox, Popconfirm} from 'antd';
-import { modlibraryget } from '../../action/modellibrary/Modellibrary';
+import { conconfigget } from '../../action/configure/Configure';
 import { getQueryString } from '../utils';
 import styles from '../style/card.less';
 
 const Option = Select.Option;
 const Search = Input.Search;
 
-class ModelLibrary extends React.Component {
+class Configure extends React.Component {
     constructor (props) {
         super(props)
     }
 
     componentWillMount(){
-        let { info } = this.props.modLibrary;
-        this.props.modlibraryget(info);
+        let { info } = this.props.conConfig;
+        if(getQueryString("username") == null){
+            info.page = 0;
+            info.size = 10;
+            info.username = undefined;
+        }else{
+            info.username = getQueryString("username");
+        }
+        // this.props.accountget(info);
     }
     // 筛选
     formFilter(key, value){
-        let { info } = this.props.modLibrary;
+        let { info } = this.props.conConfig;
         if(key == 'username'){
             info.username = value;
         }
@@ -45,7 +52,7 @@ class ModelLibrary extends React.Component {
     }
     //分页
     formPage(current, pageSize){
-        const { info } = this.props.modLibrary;
+        const { info } = this.props.conConfig;
         info.page = current - 1;
         if(pageSize != info.size){
             info.size = pageSize;
@@ -77,7 +84,7 @@ class ModelLibrary extends React.Component {
         }
     }
     render() {
-        const { list, info, load } = this.props.modLibrary;
+        const { list, info, load } = this.props.conConfig;
         const pagination = {
             total: list.totalElements,
             current: info.page + 1,
@@ -91,19 +98,29 @@ class ModelLibrary extends React.Component {
             onChange: this.formPage.bind(this),
         };
         const columns = [
-            { title: 'LevelID',dataIndex: 'levelId', key: 'levelId',},
-            { title: '厂商', dataIndex: 'makerName', key: 'makerName',},
-            { title: '品牌', dataIndex: 'brandName', key: 'brandName',},
-            { title: '车系', dataIndex: 'seriesName', key: 'seriesName',},
-            { title: '车型', dataIndex: 'saleName', key: 'saleName',},
-            { title: '年款', dataIndex: 'genreationYear', key: 'genreationYear',},
-            { title: '状态', dataIndex: 'status', key: 'status',},
-            { title: '更新时间', dataIndex: 'time', key: 'e',
+            { title: 'LevelID',dataIndex: 'username', key: 'username',},
+            { title: '厂商', dataIndex: 'person.name', key: 'person.name',},
+            { title: '品牌', key: 'isEnabled',
+                render: (text, record) => (<span>{record.isEnabled?'启用':'禁用'}</span>),
+            },
+            { title: '车系', key: 'a',
+                render: (text, record) => (<span>{record.isLocked?'是':'否'}</span>),
+            },
+            { title: '车型', key: 'b',
+                render: (text, record) => (<span>{record.isLocked?'是':'否'}</span>),
+            },
+            { title: '年款', key: 'c',
+                render: (text, record) => (<span>{record.isLocked?'是':'否'}</span>),
+            },
+            { title: '亮点配置', key: 'd',
+                render: (text, record) => (<span>{record.isLocked?'是':'否'}</span>),
+            },
+            { title: '更新时间', key: 'e',
                 render: (text, record) => (<span>{record.isLocked?'是':'否'}</span>),
             },
             { title: '操作', key: 'operation',
                 render: (text, record) => (<span>
-                    <a onClick={this.setModal.bind(this, record.id)}>编辑</a>
+                    <a onClick={this.setModal.bind(this, record.id, record.person.id)}>编辑</a>
                 </span>),
             },
         ];
@@ -133,15 +150,15 @@ class ModelLibrary extends React.Component {
     }
 }
 
-function mapStateToProps({ modLibrary }) {
+function mapStateToProps({ conConfig }) {
     return {
-        modLibrary: modLibrary,
+        conConfig: conConfig,
     };
 }
 function mapDispatchToProps(dispatch) {
     return {
-        modlibraryget: bindActionCreators(modlibraryget,dispatch),
+        conconfigget: bindActionCreators(conconfigget,dispatch),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModelLibrary);
+export default connect(mapStateToProps, mapDispatchToProps)(Configure);

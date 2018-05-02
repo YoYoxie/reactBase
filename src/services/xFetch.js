@@ -67,12 +67,18 @@ function xFetch(url, options) {
     //console.log(opts);
     //url = "http://p-api.dev.kkche.cn/v1" + url;
 
-    return fetch(url, opts)
+    // return fetch(url, opts)
+    //     .then(check200)
+    //     .then(check401)
+    //     .then(check403)
+    //     .then(check503)
+    //     .then(jsonParse);
+    return fetch(url,opts)
         .then(check200)
         .then(check401)
         .then(check403)
         .then(check503)
-        .then(jsonParse);
+        .then(jsonParse);    
 }
 
 export default xFetch;
