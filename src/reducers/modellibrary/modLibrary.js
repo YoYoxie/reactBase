@@ -10,13 +10,13 @@ const modLibrary = handleActions({
       return {...state, list: action.list, load: false, };
     },
     ['MODLIBRARY/GET/ONE'](state, action) {
-      return {...state, formid: action.formid, };
+      return {...state, formid: action.formid,formdata:{}, };
     },
     ['MODLIBRARY/GET/ONE/SUCCESS'](state, action) {
       return {...state, formdata: action.formdata, };
     },
     ['MODLIBRARY/POST/CREATE'](state, action) {
-      return {...state, formdata: action.formdata, };
+      return {...state, filedata: action.filedata, };
     },
     ['MODLIBRARY/SET/MODAL'](state, action) {
       return {...state, modal: action.modal, }
@@ -42,6 +42,9 @@ const modLibrary = handleActions({
     ['MODLIBRARY/CLEAR/DATA'](state, action) {
       return {...state, formdata: {}, };
     },
+    ['MODLIBRARY/SET/UPLOADING'](state, action) {
+      return {...state, uploading: action.uploading, };
+    },
 }, {
     list: {},
     info: {
@@ -55,8 +58,8 @@ const modLibrary = handleActions({
     patchinfo:'',
     formid: '',
     formdata: {},
-    mydata: {},
-    role: '',
+    filedata:null,
+    uploading:true,
 });
 
 export default modLibrary;

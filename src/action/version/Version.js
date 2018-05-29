@@ -43,3 +43,16 @@ export function verversionloading(loading) {
         loading: loading,
     }
 }
+//发布
+export function verversionpost() {
+    return {
+        type: 'VERVERSION/POST/CREATE',
+    }
+}
+//删除
+export function verversiondelete(formid) {
+    return {
+        type: 'VERVERSION/DELETE',
+        formid: formid,
+    }
+}

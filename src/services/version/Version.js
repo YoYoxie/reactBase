@@ -13,15 +13,21 @@ export async function getVersionList(info) {
     let item = items.slice(0, -1);
     return xFetch(API.VERSION_LIST + '?' + item);
 }
-//请求单条
+//请求单条-激活
 export async function getVersionListOne(formid) {
-    return xFetch(API.USERS_LIST + formid);
+    return xFetch(API.VERSION_LIST + '/activeVersion?id=' + formid);
 }
 //新增数据
-export async function postVersion(formdata) {
+export async function postVersion() {
     const items = {
-        method: "POST",
-        body: JSON.stringify(formdata)
+        method: "POST"
     }
     return xFetch(API.VERSION_LIST + '/createVersion', items);
+}
+//删除单条
+export async function deleteVersionListOne(formid) {
+    const items = {
+        method: "DELETE"
+    }
+    return xFetch(API.VERSION_LIST + '?id=' + formid, items);
 }

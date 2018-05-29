@@ -10,12 +10,15 @@ const conConfig = handleActions({
       return {...state, list: action.list, load: false, };
     },
     ['CONCONFIG/GET/ONE'](state, action) {
-      return {...state, formid: action.formid, };
+      return {...state, formid: action.formid,formdata:{}, };
     },
     ['CONCONFIG/GET/ONE/SUCCESS'](state, action) {
       return {...state, formdata: action.formdata, };
     },
     ['CONCONFIG/POST/CREATE'](state, action) {
+      return {...state, formdata: action.formdata, };
+    },
+    ['CONCONFIG/PUT/UPDATE'](state, action) {
       return {...state, formdata: action.formdata, };
     },
     ['CONCONFIG/SET/MODAL'](state, action) {
@@ -51,7 +54,7 @@ const conConfig = handleActions({
     modal: false,
     status: false,
     load: true,
-    loading: false,
+    loading: true,
     patchinfo:'',
     formid: '',
     formdata: {},

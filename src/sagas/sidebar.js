@@ -37,6 +37,19 @@ function* sidebarGet(action) {
                             ],
                             "parentMenu":"车型专业库管理",
                             "parentMenuId":81
+                        },
+                        {
+                            "categoryName":null,
+                            "extParam":"/vehmodlibrary/modbasic",
+                            "iconUri":null,
+                            "iconUri2":null,
+                            "id":128,
+                            "menuName":"车型基础库",
+                            "menus":[
+
+                            ],
+                            "parentMenu":"车型专业库管理",
+                            "parentMenuId":81
                         }
                     ],
                     "parentMenu":"顶级节点",

@@ -11,11 +11,7 @@ export async function getConfigureList(info) {
         }
     }
     let item = items.slice(0, -1);
-    return xFetch(API.USERS + '?' + item);
-}
-//请求单条
-export async function getConfigureListOne(formid) {
-    return xFetch(API.USERS_LIST + formid);
+    return xFetch(API.VEHICLE + '/spec/brief?' + item);
 }
 //新增数据
 export async function postConfigure(formdata) {
@@ -23,5 +19,13 @@ export async function postConfigure(formdata) {
         method: "POST",
         body: JSON.stringify(formdata)
     }
-    return xFetch(API.USERS, items);
+    return xFetch(API.CONFIG, items);
+}
+//更新数据
+export async function putConfigure(formdata) {
+    const items = {
+        method: "PUT",
+        body: JSON.stringify(formdata)
+    }
+    return xFetch(API.CONFIG , items);
 }

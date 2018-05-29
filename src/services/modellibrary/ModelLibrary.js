@@ -11,17 +11,20 @@ export async function getModelLibraryList(info) {
         }
     }
     let item = items.slice(0, -1);
-    return xFetch(API.VEHICLE + '/vehicleSpecbrief?' + item);
+    return xFetch(API.VEHICLE + '/spec/brief?' + item);
 }
 //请求单条
 export async function getModelLibraryListOne(formid) {
-    return xFetch(API.USERS_LIST + formid);
+    return xFetch(API.VEHICLE  + '/model/config/' + formid);
 }
 //新增数据
-export async function postModelLibrary(formdata) {
+export async function postModelLibrary(filedata) {
     const items = {
         method: "POST",
-        body: JSON.stringify(formdata)
+        body: JSON.stringify({
+            file: filedata.file,
+            type: filedata.type
+        })
     }
-    return xFetch(API.USERS, items);
+    return xFetch(API.UPLOAD, items);
 }

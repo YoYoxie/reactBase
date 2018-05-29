@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { hashHistory } from 'react-router';
-import { Spin, Table, Button, Row, Col, Icon, Form, Select, Input, Modal, Checkbox, Popconfirm} from 'antd';
-import { conconfigget,conconfigmodal,conconfigloading } from '../../action/configure/Configure';
+import { Table, Button, Row, Col, Select, Input, Modal, Icon} from 'antd';
+import { modbasicget,modbasicmodal,modbasicuploading,modbasiceditmodal,modbasicgetone,modbasicmakerget,modbasicbrandget,modbasicseriesget,modbasicgenreationget } from '../../action/modellibrary/ModelBasic';
 import { getQueryString } from '../utils';
-import styles from '../style/card.less';
 import UploadModel from '../upload/UploadModel';
+import BasicForm from './BasicForm';
+import styles from '../style/card.less';
 
 const Option = Select.Option;
 const Search = Input.Search;
 
-class Configure extends React.Component {
+class ModelBasic extends React.Component {
     constructor (props) {
         super(props)
     }
 
     componentWillMount(){
-        let { info } = this.props.conConfig;
-        this.props.conconfigget(info);
+        let { info,makerinfo,brandinfo,seriesinfo,genreationinfo } = this.props.modBasic;
+        this.props.modbasicget(info);
+        this.props.modbasicmakerget(makerinfo);
+        this.props.modbasicbrandget(brandinfo);
+        this.props.modbasicseriesget(seriesinfo);
+        this.props.modbasicgenreationget(genreationinfo);
     }
     // 筛选
     formFilter(key, value){
-        let { info } = this.props.conConfig;
+        let { info } = this.props.modBasic;
         if(key == 'username'){
             info.username = value;
         }
@@ -42,44 +46,30 @@ class Configure extends React.Component {
         }
         info.page=0;
         info.size=10;
-        this.props.conconfigget(info);
+        // this.props.accountget(info);
+        // this.props.accountload(true);
     }
     //分页
     formPage(current, pageSize){
-        const { info } = this.props.conConfig;
+        const { info } = this.props.modBasic;
         info.page = current - 1;
         if(pageSize != info.size){
             info.size = pageSize;
             info.page = 0;
         }
-        this.props.conconfigget(info);
+        this.props.modbasicget(info);
     }
-    //设置弹窗
+    //设置上传弹窗
     setModal(key, value){
-        this.props.conconfigmodal(true);
+        this.props.modbasicmodal(true);
     }
-    //查看
-    onLook(formid){
-        hashHistory.push(`/configlibrary/configure/moddetail?q=&id=`+formid);
-    }
-    // 禁用启用确认
-    confirmEnable(type,boolean,formid){
-        if(type=='enabled'){
-            if(boolean){
-                // this.props.accountpatchone(formid,'enable');
-            }else{
-                // this.props.accountpatchone(formid,'disable');
-            }
-        }else if(type=='locked'){
-            if(boolean){
-                // this.props.accountpatchone(formid,'lock');
-            }else{
-                // this.props.accountpatchone(formid,'unlock');
-            }
-        }
+    //设置编辑弹窗
+    setEditModal(id){
+        this.props.modbasicgetone(id);
+        this.props.modbasiceditmodal(true);
     }
     render() {
-        const { list, info, load, modal, loading } = this.props.conConfig;
+        const { list, info, load, modal, uploading } = this.props.modBasic;
         const pagination = {
             total: list.totalElements,
             current: info.page + 1,
@@ -108,7 +98,7 @@ class Configure extends React.Component {
             // },
             { title: '操作', key: 'operation',
                 render: (text, record) => (<span>
-                    <a onClick={this.onLook.bind(this, record.id)}>查看</a>
+                    <a onClick={this.setEditModal.bind(this, record.id)}>编辑</a>
                 </span>),
             },
         ];
@@ -132,34 +122,41 @@ class Configure extends React.Component {
                         <Search defaultValue={getQueryString('username')} placeholder="手机号搜索" style={{width: '100%'}} disabled={load} onSearch={this.formFilter.bind(this, 'username')}/>
                     </Col>
                     <Col style={{ float: "right"}}>
-                        <Button size="large" onClick={this.setModal.bind(this)}><Icon type="upload" />更新车型配置库</Button>
+                        <Button size="large" onClick={this.setModal.bind(this)}><Icon type="upload" />更新车型基础库</Button>
                     </Col>
                 </Row>
                 <Table rowKey="id" loading={load} columns={columns} dataSource={list.content} pagination={pagination} />
                 <UploadModel
-                    title = "更新车型配置库"
+                    title = "更新车型基础库"
                     type="basic" 
-                    uploading={loading} 
+                    uploading={uploading} 
                     modal = {modal} 
-                    setModal={this.props.conconfigmodal.bind(this)} 
-                    setUploading={this.props.conconfigloading.bind(this)}
-                    reload = {this.props.conconfigget.bind(this)} />
+                    setModal={this.props.modbasicmodal.bind(this)} 
+                    setUploading={this.props.modbasicuploading.bind(this)}
+                    reload = {this.props.modbasicget.bind(this)} />
+                <BasicForm />    
             </div>
         )
     }
 }
 
-function mapStateToProps({ conConfig }) {
+function mapStateToProps({ modBasic }) {
     return {
-        conConfig: conConfig,
+        modBasic: modBasic,
     };
 }
 function mapDispatchToProps(dispatch) {
     return {
-        conconfigget: bindActionCreators(conconfigget,dispatch),
-        conconfigmodal: bindActionCreators(conconfigmodal,dispatch),
-        conconfigloading: bindActionCreators(conconfigloading,dispatch),
+        modbasicget: bindActionCreators(modbasicget,dispatch),
+        modbasicmodal: bindActionCreators(modbasicmodal,dispatch),
+        modbasicuploading:bindActionCreators(modbasicuploading,dispatch),
+        modbasiceditmodal: bindActionCreators(modbasiceditmodal,dispatch),
+        modbasicgetone:bindActionCreators(modbasicgetone,dispatch),
+        modbasicmakerget:bindActionCreators(modbasicmakerget,dispatch),
+        modbasicbrandget:bindActionCreators(modbasicbrandget,dispatch),
+        modbasicseriesget:bindActionCreators(modbasicseriesget,dispatch),
+        modbasicgenreationget:bindActionCreators(modbasicgenreationget,dispatch),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Configure);
+export default connect(mapStateToProps, mapDispatchToProps)(ModelBasic);

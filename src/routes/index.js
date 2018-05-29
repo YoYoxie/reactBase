@@ -15,6 +15,9 @@ import Layout from '../components/Layout';
 
 // 车型库
 import ModelLibrary from '../components/modellibrary/Modellibrary';
+import ModelDetail from '../components/modellibrary/ModelDetail';
+// 车型基础库
+import ModelBasic from '../components/modellibrary/ModelBasic';
 // 车型配置库
 import Configure from '../components/configure/Configure';
 // 车型版本库
@@ -44,6 +47,8 @@ const VehModelLibrary = ({ location }) => {
     let Child;
     switch (location.pathname) {
         case '/vehmodlibrary/modlibrary': Child = <ModelLibrary />; break;
+        case '/vehmodlibrary/modlibrary/moddetail': Child = <ModelDetail />; break;
+        case '/vehmodlibrary/modbasic': Child = <ModelBasic />; break;
         default:      Child = <ModelLibrary />;
     }
     return ( <div>{Child}</div>);
@@ -52,6 +57,7 @@ const ConfigLibrary = ({ location }) => {
     let Child;
     switch (location.pathname) {
         case '/configlibrary/configure': Child = <Configure />; break;
+        case '/configlibrary/configure/moddetail': Child = <ModelDetail />; break;
         default:      Child = <Configure />;
     }
     return ( <div>{Child}</div>);
@@ -70,11 +76,16 @@ const Routes = ({ history }) =>
     <Router history={hashHistory}>
         <Route  path="/" component={Home} onEnter = { validate }>
             <IndexRedirect to = "vehmodlibrary/modlibrary" />
-            <Route name="vehmodlibrary" breadcrumbName="车型专业库管理" path="vehmodlibrary" component={VehModelLibrary}>
-                <Route breadcrumbName="车型专业库" path="modlibrary"/>
+            <Route name="vehmodlibrary" breadcrumbName="车型完整库管理" path="vehmodlibrary" component={VehModelLibrary}>
+                <Route breadcrumbName="车型完整库" path="modlibrary">
+                    <Route breadcrumbName="车型详情" path="moddetail"/>
+                </Route>
+                <Route breadcrumbName="车型基础库" path="modbasic"/>
             </Route>
-            <Route name="configlibrary" breadcrumbName="车型库配置管理" path="configlibrary" component={ConfigLibrary}>
-                <Route breadcrumbName="车型库配置" path="configure"/>
+            <Route name="configlibrary" breadcrumbName="车型配置库管理" path="configlibrary" component={ConfigLibrary}>
+                <Route breadcrumbName="车型配置库" path="configure">
+                    <Route breadcrumbName="车型详情" path="moddetail"/>
+                </Route>
             </Route>
             <Route name="version" breadcrumbName="车型库版本管理" path="version" component={VersionMenu}>
                 <Route breadcrumbName="车型库版本" path="list"/>

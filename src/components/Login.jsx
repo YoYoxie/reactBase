@@ -2,9 +2,11 @@ import React from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { Form, Input, Button, Row, Col, notification } from 'antd';
+import sha1 from 'sha1';
 import { loginpost, forgetpassword, resetpassword, setstatus, setcode } from '../action/login';
 
 import styles from './login.less';
+import background from './background.png';
 
 const FormItem = Form.Item;
 
@@ -84,32 +86,38 @@ class Login extends React.Component {
         const { status, code } = this.props.login;
         return(
             <div className={styles.loginrow}>
-                <Row className={styles.loginrow} type="flex" justify="space-around" align="middle">
+                <Row className={styles.loginrow} style={{backgroundImage: `url(${background})`}} type="flex" justify="space-around" align="middle">
                     <Col xs={{ span: 24 }}>
                         <Row type="flex" justify="center" align="middle">
-                            <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 16 }} lg={{ span: 12 }}></Col>
-                            <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }} lg={{ span: 8 }}>
+                            
+                            <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 6 }} lg={{ span: 6 }}>
+                                <Row className={styles.title} type="flex" justify="center" align="middle">
+                                    <span>车型库管理系统</span>
+                                </Row>
+                                <Row className={styles.ap} type="flex" justify="center" align="middle">
+                                    <span>账户密码登录</span>
+                                </Row>
                                 <Form layout="horizontal" className={styles.loginform}>
-                                    <FormItem label="手机号" labelCol={{ span: 5 }} wrapperCol={{ span: 18 }} style={{marginBottom:0}}>
+                                    <FormItem wrapperCol={{ span: 24 }} style={{marginBottom:0}}>
                                         {getFieldDecorator('username')(
-                                            <Input placeholder="请输入手机号"  style={{height:40,marginBottom:10}}/>
+                                            <Input placeholder="账户"  style={{height:40,marginBottom:10}}/>
                                         )}
                                     </FormItem>
-                                    <FormItem label="密码" labelCol={{ span: 5 }} wrapperCol={{ span: 18 }} style={{marginBottom:0}}>
+                                    <FormItem wrapperCol={{ span: 24 }} style={{marginBottom:0}}>
                                         {getFieldDecorator('passwords')(
-                                            <Input type="password" placeholder="请输入密码" style={{height:40,marginBottom:10}} onPressEnter={this.handleSubmit.bind(this)}/>
+                                            <Input type="password" placeholder="密码" style={{height:40,marginBottom:10}} onPressEnter={this.handleSubmit.bind(this)}/>
                                         )}
                                     </FormItem>
                                     <Row>
-                                        <Col span="18" offset="5">
+                                        <Col span="24">
                                             <Button type="ghost" size="large" className={styles.btnlogin} onClick={this.handleSubmit.bind(this)}>登录</Button>
                                         </Col>
                                     </Row>
-                                    <Row>
-                                        <Col span="18" offset="5" style={{ textAlign: "right" }}>
+                                    {/*<Row>
+                                        <Col span="24" style={{ textAlign: "right" }}>
                                             <a onClick={this.onStatus.bind(this, false)} style={{ color: '#F18F68' }}>忘记密码？</a>
                                         </Col>
-                                    </Row>
+                                    </Row>*/}
                                 </Form>
                             </Col>
                         </Row>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Spin, Table, Button, Row, Col, Form, Select, Input, Modal, Checkbox, Popconfirm} from 'antd';
-import { verversionget } from '../../action/version/Version';
+import { verversionget,verversiongetone,verversiondelete } from '../../action/version/Version';
 import moment from 'moment';
 import { getQueryString } from '../utils';
 import styles from '../style/card.less';
@@ -68,27 +68,13 @@ class Version extends React.Component {
         this.props.verversionget(info);
         // this.props.accountload(true);
     }
-    //设置弹窗
-    setModal(key, value){
-        // this.props.accountmodal(true);
-        // this.props.accountgetone(key);
-        // this.props.persongetone(value);
+    // 激活
+    active(id){
+        this.props.verversiongetone(id)
     }
-    // 禁用启用确认
-    confirmEnable(type,boolean,formid){
-        if(type=='enabled'){
-            if(boolean){
-                // this.props.accountpatchone(formid,'enable');
-            }else{
-                // this.props.accountpatchone(formid,'disable');
-            }
-        }else if(type=='locked'){
-            if(boolean){
-                // this.props.accountpatchone(formid,'lock');
-            }else{
-                // this.props.accountpatchone(formid,'unlock');
-            }
-        }
+    // 删除
+    delete(id){
+        this.props.verversiondelete(id)
     }
     render() {
         const { list, info, load } = this.props.verVersion;
@@ -107,7 +93,7 @@ class Version extends React.Component {
         const columns = [
             { title: '版本号',dataIndex: 'name', key: 'name',},
             { title: '状态',dataIndex: 'version', key: 'status',
-                render: (text, record) => (<span>{record.status?'启用':'禁用'}</span>),
+                render: (text, record) => (<span>{record.status=='active'?'激活':record.status=='inactive'?'未激活':record.status=='processing'?'发布中':'发布失败'}</span>),
             },
             { title: '生成时间',dataIndex: 'creationTime', key: 'creationTime',
                 render: (text, record) => record.creationTime?moment(record.creationTime).format("YYYY-MM-DD"):'',
@@ -117,7 +103,22 @@ class Version extends React.Component {
             },
             { title: '操作', key: 'operation',
                 render: (text, record) => (<span>
-                    <a onClick={this.setModal.bind(this,)}>编辑</a>
+                    {record.status=='active'?'':record.status=='inactive'?
+                    <Popconfirm title="确认激活此版本？"
+                    placement="left"
+                    okText="激活" 
+                    cancelText="取消"
+                    onConfirm={this.active.bind(this,record.id)}>
+                        <a>激活</a>
+                    </Popconfirm>
+                    :
+                    <Popconfirm title="确认删除此版本？"
+                    placement="left"
+                    okText="删除" 
+                    cancelText="取消"
+                    onConfirm={this.delete.bind(this,record.id)}>
+                        <a>删除</a>
+                    </Popconfirm>}
                 </span>),
             },
         ];
@@ -155,6 +156,8 @@ function mapStateToProps({ verVersion }) {
 function mapDispatchToProps(dispatch) {
     return {
         verversionget: bindActionCreators(verversionget,dispatch),
+        verversiongetone: bindActionCreators(verversiongetone,dispatch),
+        verversiondelete: bindActionCreators(verversiondelete,dispatch),
     }
 }
 

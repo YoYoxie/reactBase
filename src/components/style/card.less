@@ -6,13 +6,23 @@
     box-shadow: 0 1px #CAD1DA;
 }
 //由于文本较长，采用左对齐方式
-.vehTable {
+.cardTable {
     tr {
-        td {
+        th {
+            &:nth-child(1) {
+                text-align: left;
+                padding-left: 16px;
+            }
             &:nth-child(2) {
                 text-align: left;
             }
-            &:nth-child(3) {
+        }
+        td {
+            &:nth-child(1) {
+                text-align: left;
+                padding-left: 16px;
+            }
+            &:nth-child(2) {
                 text-align: left;
             }
         }

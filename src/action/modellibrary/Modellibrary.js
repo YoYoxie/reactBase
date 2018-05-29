@@ -43,3 +43,17 @@ export function modlibraryloading(loading) {
         loading: loading,
     }
 }
+//设置uploading
+export function modlibraryuploading(uploading) {
+    return {
+        type: 'MODLIBRARY/SET/UPLOADING',
+        uploading: uploading,
+    }
+}
+//上传
+export function modlibrarypost(filedata) {
+    return {
+        type: 'MODLIBRARY/POST/CREATE',
+        filedata: filedata,
+    }
+}

@@ -1,7 +1,7 @@
 :global {
 
     ::selection{
-        background: #49BCCE;
+        background: #47ACFF;
     }
     //解决checkboxgrop多行时，下一行和上一行对齐显示
     .ant-checkbox-wrapper + .ant-checkbox-wrapper{
@@ -14,7 +14,7 @@
     }
     a{
         &:hover{
-            color:#49BCCE;
+            color:#47ACFF;
         }
     }
 
@@ -26,7 +26,7 @@
         border-radius: 4px;
         color:#253648;
         &:hover,&:active,&:focus{
-            border:1px solid #49BCCE;
+            border:1px solid #47ACFF;
         }
     }
     .ant-input-sm {
@@ -36,8 +36,14 @@
     .ant-input-affix-wrapper:hover .ant-input {
         &:hover{
             .ant-input{
-                border-color: #49BCCE;
+                border-color: #47ACFF;
             }
+        }
+    }
+    .ant-table-row .ant-form-item{
+        margin: 0px;
+        .ant-input-sm{
+            font-size: 12px;
         }
     }
     //多选框
@@ -57,7 +63,7 @@
         border: 1px solid rgba(0,0,0,0.15);
         border-radius: 4px;
         &:hover,&:focus,&:active{
-            border:1px solid #49BCCE;
+            border:1px solid #47ACFF;
         }
     }
     .ant-select-tree{
@@ -78,6 +84,8 @@
     //按钮
     .ant-btn {
         border-radius: 3px;
+        color: #40a9ff;
+        border: 1px solid #40a9ff;
         //height:36px;
     }
     .ant-tabs-nav .ant-tabs-tab-inner {
@@ -92,13 +100,13 @@
     }
     .ant-btn-sm{
         &:hover{
-            border-color:#49BCCE;
-            background:#49BCCE;
+            border-color:#47ACFF;
+            background:#47ACFF;
             color:#fff;
         }
         &:active{
-            border-color:#49BCCE;
-            background:#49BCCE;
+            border-color:#47ACFF;
+            background:#47ACFF;
             color:#fff;
         }
     }
@@ -110,16 +118,19 @@
     //蓝色色按钮
     .ant-btn-primary {
         color: #FFF;
-        background-color: #2DD1AC;
+        background-color: #1890FF;
         border:0;
     }
     .ant-input-search-button{
-        background-color: #2DD1AC;
+        background-color: #1890FF;
     }
     .ant-btn-primary:focus, .ant-btn-primary:hover{
-        background-color: #49BCCE;
+        background-color: #47ACFF;
         border: 0;
     }
+    .ant-btn-primary:active{
+            background:#1477E3;
+        }
     //蓝色按钮
     .ant-btn-ghost{
         color: #fff;
@@ -136,37 +147,39 @@
     .ant-breadcrumb {
         color: #999;
         font-size: 14px;
-        border-bottom: 1px solid #CAD1DA;
+        // border-bottom: 1px solid #CAD1DA;
         line-height: 40px;
         padding-left: 10px;
-        background: #FFF;
+        background: #EDF0F5;
         a{
-            color:#16325C;
+            color:#000000 45%;
             &:hover{
-                color:#16325C;
+                color:#1890FF;
             }
         }
         >span{
             &:last-child{
-                color: #16325C;
+                color: #1890FF;
                 font-weight:normal;
             }
         }
     }
     //左侧导航栏
     .ant-menu-item > a{
-        color:#061C3F;
+        color:#FFF;
         &:hover{
             color: #4B74FF;
         }
     }
     .ant-menu-item{
+        background-color: #272C33;
         &:hover{
-            background-color: #EFF6FF;
+            background-color: #272C33;
         }
     }
     .ant-menu{
-        background: #FFF;
+        background: #272C33;
+        border: 0px;
     }
     .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
         height: 60px;
@@ -178,14 +191,14 @@
     .ant-menu-sub.ant-menu-inline > .ant-menu-item {
         height: 60px;
         line-height: 60px;
-        background: #FFF;
+        // background: #FFF;
         // border-bottom: 1px solid #4B74FF;
         font-size:13px;
         margin: 0px;
     }
     //选择住标签后显示蓝色标示
     .ant-menu-sub.ant-menu-inline > .ant-menu-item-selected {
-        background:#EFF6FF;
+        background:#272C33;
 
     }
     .ant-menu-item-selected > a, .ant-menu-item-selected > a:hover {
@@ -227,7 +240,7 @@
                 }
             }
             .ant-menu-item-active, .ant-menu-item-selected{
-                background-color: #49BCCE;
+                background-color: #47ACFF;
             }
         }
     }
@@ -240,38 +253,42 @@
     //新修改左侧菜单样式
     .ant-menu-horizontal > .ant-menu-submenu .ant-menu-submenu-title {
         &:hover{
-            background-color: #253648;
+            background-color: #1890FF;
         }
     }
     .ant-menu-submenu-active {
         background: #F0F8FC;
     }
-    .ant-menu-item-active,
+    // .ant-menu-item-active,
     .ant-menu-submenu-active,
     .ant-menu-submenu-title{
         &:hover{
-            background-color: #EFF6FF;
-            color:#4B74FF;
+            background-color: #1890FF;
+            // color:#1890FF;
         }
     }
     .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title{
-        color:#061C3F;
+        color:#FFF;
     }
     .ant-menu-inline, .ant-menu-vertical{
         // border-right:1px solid #4B74FF;
     }
     .ant-menu-submenu-title .anticon{
-        color:#061C3F;
+        color:#FFF;
     }
     .ant-menu-submenu-open .ant-menu-submenu-title{
         &:hover{
-            background:#FFF;
+            background:#1890FF;
         }
     }
+    .ant-menu-submenu-open{
+        background:#1890FF;
+    }
     .ant-menu-horizontal > .ant-menu-submenu-selected{
-        // border-bottom:2px solid #49BCCE;
-        color: #4B74FF;
-        background: #EFF6FF;
+        // border-bottom:2px solid #47ACFF;
+        color: #000;
+        background: #fff;
+        border-bottom:0px;
     }
     .ant-menu-item-selected > a,
     .ant-menu-item-selected > a:hover {
@@ -281,7 +298,7 @@
         color:#061C3F;
     }
     .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-        background-color: #EFF6FF;
+        background-color: #272C33;
     }
     //左侧菜单选中后右侧蓝色竖线
     .ant-menu-inline .ant-menu-item:after, .ant-menu-vertical .ant-menu-item:after{
@@ -375,11 +392,17 @@
         background:#FAFAFA;
     }
     //鼠标移到行上的hover颜色
-    .ant-table-thead > tr.ant-table-row-hover,
-    .ant-table-tbody > tr.ant-table-row-hover,
+    // .ant-table-thead > tr.ant-table-row-hover,
+    // .ant-table-tbody > tr.ant-table-row-hover,
     .ant-table-thead > tr:hover,
     .ant-table-tbody > tr:hover {
         background: #F2FBFC;
+    }
+    .ant-table-tbody > tr.ant-table-row-hover > td{
+        background: #fff;
+    }
+    .ant-table-tbody > tr:hover > td{
+        background: #e6f7ff;
     }
 
     //小表格样式
@@ -444,7 +467,7 @@
             color:#253648;
         }
         &:hover{
-            background:#49BCCE;
+            background:#47ACFF;
             color:#FFF;
             a{
                 color:#253648;
@@ -452,7 +475,7 @@
         }
     }
     .ant-pagination-item-active{
-        background:#49BCCE;
+        background:#47ACFF;
         a{
             color:#FFF;
         }
@@ -491,17 +514,17 @@
     }
     //card
     .ant-card-head{
-        height:36px;
-        line-height:36px;
+        height:55px;
+        line-height:26px;
     }
     .ant-card-head-title{
         font-weight:normal;
-        color:#4B74FF;
+        color:#000 85%;
 
     }
     //progress bar
     .ant-progress-bg{
-        background:#49BCCE
+        background:#47ACFF
     }
     //标签页字颜色
     .ant-tabs{
@@ -509,24 +532,24 @@
     }
     .ant-tabs-nav {
         .ant-tabs-tab-active{
-            color:#49BCCE;
+            color:#47ACFF;
         }
     }
     .ant-tabs-ink-bar{
-        background-color:#49BCCE;
+        background-color:#47ACFF;
     }
 
     .ant-tabs-nav .ant-tabs-tab-active .ant-tabs-tab-inner{
-        color:#49BCCE;
+        color:#47ACFF;
     }
     .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab{
         &:hover,&:focus,&:active{
-          color:#49BCCE;
+          color:#47ACFF;
         }
         //width:10%;
     }
     .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active{
-        color:#49BCCE;
+        color:#47ACFF;
     }
     .ant-tabs-nav{
         .ant-tabs-tab{
@@ -552,23 +575,15 @@
                 text-align: center;
             }
             .ant-tabs-tab-active{
-                background-color: #49BCCE;
+                background-color: #47ACFF;
                 color: #FFF;
             }
         }
     }
-    //弹出框按钮居中
-    .ant-modal-footer{
-        text-align:center;
-    }
+    
     //客服工单
     .ant-card-body {
         padding: 0!important;
-    }
-    .has-success {
-        .ant-input{
-            border:1px solid #83919E;
-        }
     }
     //placehoder
     ::-webkit-input-placeholder {
@@ -611,7 +626,7 @@
         display: block;
         &:hover{
             .ant-calendar-picker-input{
-                border-color: #49BCCE
+                border-color: #47ACFF
             }
         }
     }
@@ -621,7 +636,7 @@
     .ant-calendar-picker{
         &:hover{
             .ant-calendar-picker-input:not([disabled]){
-                border-color: #49BCCE;
+                border-color: #47ACFF;
             }
         }
     }
@@ -630,41 +645,41 @@
     //input-number线框色
     .ant-input-number{
         &:hover{
-            border:1px solid #49BCCE;
+            border:1px solid #47ACFF;
         }
     }
     //radio,checkbox颜色
     .ant-radio-inner{
         &::after{
-            background:#49BCCE;
+            background:#47ACFF;
         }
     }
     .ant-checkbox-checked {
         .ant-checkbox-inner{
-            background-color: #49BCCE;
-            border-color: #49BCCE;
+            background-color: #47ACFF;
+            border-color: #47ACFF;
             &:active{
-                border:1px solid #49BCCE;
+                border:1px solid #47ACFF;
             }
         }
     }
     //鼠标移动多选框时边框色
     .ant-checkbox-checked:hover .ant-checkbox-inner{
-        border-color: #49BCCE;
+        border-color: #47ACFF;
     }
     .ant-steps .ant-steps-item.ant-steps-status-process .ant-steps-head-inner{
-        border-color: #49BCCE;
-        background-color: #49BCCE;
+        border-color: #47ACFF;
+        background-color: #47ACFF;
     }
     .ant-checkbox-focused{
         .ant-checkbox-inner{
-            border-color: #49BCCE;
+            border-color: #47ACFF;
         }
     }
     .ant-checkbox{
         &:hover{
             .ant-checkbox-inner{
-                border-color: #49BCCE;
+                border-color: #47ACFF;
             }
         }
     }
@@ -672,20 +687,20 @@
         &:hover{
             .ant-checkbox{
                 .ant-checkbox-inner{
-                    border-color: #49BCCE;
+                    border-color: #47ACFF;
                 }
             }
         }
     }
     .ant-radio-focused  {
         .ant-radio-inner{
-            border-color: #49BCCE;
+            border-color: #47ACFF;
         }
     }
     .ant-radio{
         &:hover{
             .ant-radio-inner{
-                border-color: #49BCCE;
+                border-color: #47ACFF;
             }
         }
     }
@@ -693,7 +708,7 @@
         &:hover{
             .ant-radio{
                 .ant-radio-inner{
-                    border-color: #49BCCE;
+                    border-color: #47ACFF;
                 }
             }
         }
@@ -710,7 +725,7 @@
         }
     }
     .ant-steps .ant-steps-item.ant-steps-status-process .ant-steps-title{
-        color:#49BCCE;
+        color:#47ACFF;
     }
     .ant-steps .ant-steps-item.ant-steps-status-wait .ant-steps-title{
         color:#40566B;
@@ -763,48 +778,48 @@
     }
     //时间轴样式调整
     .ant-timeline-item-head-blue {
-        border-color: #49BCCE;
-        color: #49BCCE;
+        border-color: #47ACFF;
+        color: #47ACFF;
     }
     //轮播图箭头
     .ant-pagination-prev{
         &:hover{
-            border-color: #49BCCE;
+            border-color: #47ACFF;
             a{
-                color:#49BCCE;
+                color:#47ACFF;
             }
         }
     }
     .ant-pagination-next{
         &:hover{
-            border-color: #49BCCE;
+            border-color: #47ACFF;
             a{
-                color:#49BCCE;
+                color:#47ACFF;
             }
         }
     }
     //日期选择框
     .ant-calendar-today  {
         .ant-calendar-date{
-            border-color: #49BCCE;
+            border-color: #47ACFF;
             font-weight: bold;
-            color: #49BCCE;
+            color: #47ACFF;
         }
     }
     .ant-calendar-date{
         &:hover{
-            background: #49BCCE;
+            background: #47ACFF;
         }
         &:active {
             color: #fff;
-            background: #49BCCE;
+            background: #47ACFF;
         }
     }
     .ant-calendar-selected-day .ant-calendar-date{
-        background: #49BCCE;
+        background: #47ACFF;
         color:#fff;
         &:hover{
-            background: #49BCCE;
+            background: #47ACFF;
         }
     }
 
@@ -851,7 +866,7 @@
     }
     .ant-radio-checked  {
         .ant-radio-inner{
-            border-color: #49BCCE;
+            border-color: #47ACFF;
         }
     }
     //分隔线
@@ -865,12 +880,12 @@
         border-radius:0;
     }
     .ant-menu-horizontal>.ant-menu-submenu:hover{
-        border-bottom:2px solid #49BCCE;
+        border-bottom:2px solid #47ACFF;
     }
     .ant-checkbox-indeterminate{
         .ant-checkbox-inner {
-            background-color: #49BCCE;
-            border-color: #49BCCE;
+            background-color: #47ACFF;
+            border-color: #47ACFF;
         }
     }
     :root .ant-menu-submenu-inline > .ant-menu-submenu-title{
@@ -898,7 +913,7 @@
                 border:1px solid #ff0000;
             }
             background:#fff;
-            border-top:2px solid #49BCCE;
+            border-top:2px solid #47ACFF;
             border-left: 1px solid #A1DBE4;
             border-right: 1px solid #A1DBE4;
         }
@@ -942,7 +957,7 @@
     .ant-input-affix-wrapper {
         &:hover {
             .ant-input {
-                border-color: #49BCCE;
+                border-color: #47ACFF;
             }
         }
     }

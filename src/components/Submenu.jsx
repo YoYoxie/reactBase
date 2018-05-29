@@ -96,7 +96,7 @@ class Submenu extends React.Component {
         const { mydata } = {person:null};
         return(
             <Menu className={styles.headermenu} mode="horizontal" onClick={this.onSubmenu.bind(this)}>
-                <SubMenu title={<span style={{color:'#F18F68'}}><Icon type="user" />{}</span>}>
+                <SubMenu title={<span style={{color:'#000'}}><Icon type="user" />{}</span>}>
                     <Menu.Item key="forget">修改密码</Menu.Item>
                     <Menu.Item key="logout">退出</Menu.Item>
                 </SubMenu>

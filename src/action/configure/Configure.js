@@ -43,3 +43,10 @@ export function conconfigloading(loading) {
         loading: loading,
     }
 }
+//编辑更新
+export function conconfigupdate(formdata) {
+    return {
+        type: 'CONCONFIG/PUT/UPDATE',
+        formdata: formdata,
+    }
+}

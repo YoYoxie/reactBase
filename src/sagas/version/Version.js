@@ -1,7 +1,7 @@
 import { takeLatest } from 'redux-saga';
 import { take, call, put, fork, cancel } from 'redux-saga/effects';
 import cookie from 'js-cookie';
-import { getVersionList,postVersion,getVersionListOne } from '../../services/version/Version';
+import { getVersionList,postVersion,getVersionListOne,deleteVersionListOne } from '../../services/version/Version';
 import { message,notification } from 'antd';
 /*
     组织架构-账号请求
@@ -35,8 +35,21 @@ function* getVersionOne(action) {
                 type: 'VERVERSION/GET/ONE/SUCCESS',
                 formdata: jsonResult.data,
             });
+            notification['success']({
+                message: '激活成功'
+            })
+            yield put({
+                type: 'VERVERSION/GET',
+                info: {
+                    page:0,
+                    size:10
+                },
+            });
         }
     } catch (error) {
+        notification['error']({
+                message: '激活失败'
+            })
         console.log("getVersionOne err");
         message.error(error);
     }
@@ -44,18 +57,14 @@ function* getVersionOne(action) {
 // 创建
 function* postVersionCreate(action) {
     try {
-        const { jsonResult } = yield call(postVersion, action.formdata)
+        const { jsonResult } = yield call(postVersion)
         if (jsonResult.ok) {
-            yield put({
-                type: 'PERSON/SET/STATUS',
-                status: true
-            });
             yield put({
                 type: 'VERVERSION/SET/STATUS',
                 status: true
             });
             notification['success']({
-                message: '添加成功'
+                message: '发布成功'
             })
         }else{
             notification['error']({
@@ -72,6 +81,40 @@ function* postVersionCreate(action) {
         message.error(error);
     }
 }
+// 删除
+function* deleteVersion(action) {
+    try {
+        const { jsonResult } = yield call(deleteVersionListOne, action.formid)
+        if (jsonResult.ok) {
+            yield put({
+                type: 'VERVERSION/SET/STATUS',
+                status: true
+            });
+            notification['success']({
+                message: '删除成功'
+            })
+            yield put({
+                type: 'VERVERSION/GET',
+                info: {
+                    page:0,
+                    size:10
+                },
+            });
+        }else{
+            notification['error']({
+                message: jsonResult.errorCode,
+                description: jsonResult.errorMsg
+            });
+            yield put({
+                type: 'VERVERSION/SET/LOADING',
+                loading: false
+            });
+        }
+    }catch (error) {
+        console.log("deleteVersion err");
+        message.error(error);
+    }
+}
 
 //事件监听
 
@@ -84,9 +127,13 @@ function* watchVersionOne() {
 function* watchVersionCreate() {
     yield takeLatest('VERVERSION/POST/CREATE', postVersionCreate)
 }
+function* watchVersionDelete() {
+    yield takeLatest('VERVERSION/DELETE', deleteVersion)
+}
 //启动配置
 export default function* () {
     yield fork(watchVersion);
     yield fork(watchVersionOne);
     yield fork(watchVersionCreate);
+    yield fork(watchVersionDelete);
 }

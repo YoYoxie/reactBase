@@ -44,7 +44,7 @@ function* getModelLibraryOne(action) {
 // 创建
 function* postModelLibraryCreate(action) {
     try {
-        const { jsonResult } = yield call(postModelLibrary, action.formdata)
+        const { jsonResult } = yield call(postModelLibrary, action.filedata)
         if (jsonResult.ok) {
             yield put({
                 type: 'PERSON/SET/STATUS',

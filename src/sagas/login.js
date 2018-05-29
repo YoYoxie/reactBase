@@ -11,22 +11,22 @@ import { message, notification } from 'antd';
  */
 
 function* loginPost(action) {
-    // try {
-    //     const { jsonResult } = yield call(postLogin, action.username, action.password);
-    //     if (jsonResult.ok) {
+    try {
+        const { jsonResult } = yield call(postLogin, action.username, action.password);
+        if (jsonResult.ok) {
     //         console.log(jsonResult)
     //         cookie.set('authorization', jsonResult.data.token);
     //         cookie.set('userId',jsonResult.data.userId);
             location.href = '/';
-    //     }else{
-    //         notification['error']({
-    //             message: jsonResult.errorMsg,
-    //         })
-    //     }
-    // } catch (error) {
-    //     console.log(error);
+        }else{
+            notification['error']({
+                message: jsonResult.errorMsg,
+            })
+        }
+    } catch (error) {
+        console.log(error);
 
-    // }
+    }
 }
 function* logoutPost(action) {
     try {

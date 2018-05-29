@@ -18,6 +18,9 @@ const verVersion = handleActions({
     ['VERVERSION/POST/CREATE'](state, action) {
       return {...state, formdata: action.formdata, };
     },
+    ['VERVERSION/DELETE'](state, action) {
+      return {...state, formid: action.formid, };
+    },
     ['VERVERSION/SET/MODAL'](state, action) {
       return {...state, modal: action.modal, }
     },
